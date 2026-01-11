@@ -1,0 +1,26 @@
+---
+import Profile from './Profile.astro';
+import Socials from './Socials.astro';
+import Hero from './hero.astro'; // This is your SidebarAbout/Hero text
+import Controls from './Controls.astro';
+import Module from './Module.astro';
+---
+
+<aside class="flex flex-col gap-4">
+    <Profile />
+    <Socials />
+    <Hero />
+    <div class="fixed left-4 top-1/2 -translate-y-1/2 h-32 w-px bg-bg-secondary hidden lg:block">
+    <div id="scroll-progress-bar" class="w-full bg-accent shadow-[0_0_8px_#22d3ee] transition-all duration-150"></div>
+    </div>
+    <script>
+    window.addEventListener('scroll', () => {
+        const bar = document.getElementById('scroll-progress-bar');
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        if (bar) bar.style.height = `${scrollPercent}%`; });
+    </script>
+    <div class="mt-auto flex flex-col gap-4">
+        <Controls />
+        <Module />
+    </div>
+</aside>

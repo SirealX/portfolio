@@ -1,0 +1,16 @@
+---
+// Import your helpers (you likely have these in your i18n folder)
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="mt-4 px-2">
+  <h2 class="text-3xl font-medium text-txt-primary mb-6">
+    {t('sidebar.about_title') || 'About'}
+  </h2>
+  <p class="text-txt-secondary leading-relaxed text-[15px] max-w-sm">
+    {t('sidebar.subtitle')}
+  </p>
+</div>

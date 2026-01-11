@@ -1,0 +1,109 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const projects = [
+  {
+    title: t('pj1.title'),
+    year: "2026", // Years usually don't need translation
+    statusKey: 'project.status.ongoing' as const,
+    statusCode: 'ongoing',
+    description: t('pj1.description'),
+    features: [
+      t('pj1.f1'),
+      t('pj1.f2'),
+      t('pj1.f3'),
+    ],
+    skills: ["Astro", "TypeScript", "Vite", "Taildsind CSS"],
+    github: "https://github.com/SirealX",
+    logs: [
+      { date: t('pj1.log1.date'), event: t('pj1.log1.event') },
+      { date: t('pj1.log2.date'), event: t('pj1.log2.event') },
+      { date: t('pj1.log3.date'), event: t('pj1.log3.event') },
+      { date: t('pj1.log4.date'), event: t('pj1.log4.event') },
+    ],
+    line: t('pj1.line'),
+
+  },
+  {
+    title: t('pj2.title'),
+    year: "2025", // Years usually don't need translation
+    statusKey: 'project.status.ongoing' as const,
+    statusCode: 'ongoing',
+    description: t('pj2.description'),
+    features: [
+      t('pj2.f1'),
+      t('pj2.f2'),
+      t('pj2.f3'),
+      t('pj2.f4'),
+    ],
+    skills: ["React","Taildwind CSS", "Vite", "PHP", "MySQL"],
+    logs: [
+      { date: t('pj2.log1.date'), event: t('pj1.log1.event') },
+      { date: t('pj2.log2.date'), event: t('pj1.log2.event') },
+      { date: t('pj2.log3.date'), event: t('pj1.log3.event') },
+    ],
+    line: t('pj2.line'),
+  }
+];
+---
+<section class="mt-32 px-4 w-full">
+  <h2 class="text-4xl font-bold text-txt-primary mb-12 tracking-tighter ml-4">{t('project.title')}</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+    {projects.map((proj) => (
+      <div class="group/project relative w-full p-10 rounded-[2.5rem] bg-bg-secondary/10 border border-accent/10 hover:border-glass-border transition-all duration-700 flex flex-col min-h-125">
+        
+        <div class="mb-8">
+          <div class="flex justify-between items-start mb-2">
+            <span class={`text-[10px] font-bold uppercase tracking-[0.3em] ${
+            proj.statusCode === 'ongoing' ? 'text-accent/80' : 'text-emerald-500/80'}`}>
+            {t(proj.statusKey)}
+            </span>
+            <span class="text-[10px] font-bold text-txt-secondary uppercase tracking-[0.2em]">{proj.year}</span>
+          </div>
+          <h3 class="text-3xl font-bold text-txt-primary tracking-tight leading-tight group-hover/project:text-accent transition-colors duration-500">
+            {proj.title}
+          </h3>
+        </div>
+
+        <div class="relative group/section mb-8 p-4 -ml-4 rounded-2xl hover:bg-glass-fill transition-colors">
+          <h4 class="text-[10px] uppercase tracking-[0.2em] text-txt-secondary font-bold mb-3">{t("project.label.scope")}</h4>
+          <p class="text-txt-secondary text-[15px] leading-relaxed italic">
+            "{proj.description}"
+          </p>
+        </div>
+
+        <div class="relative group/section flex-1 p-4 -ml-4 rounded-2xl hover:bg-glass-fill transition-colors">
+          <h4 class="text-[10px] uppercase tracking-[0.2em] text-txt-secondary font-bold mb-4">{t("project.label.objectives")}</h4>
+          <ul class="space-y-3">
+            {proj.features.map(feat => (
+              <li class="flex items-center gap-3 text-sm text-txt-secondary group-hover/section:text-txt-primary/90 transition-colors">
+                <span class="h-px w-4 bg-bg-secondary group-hover/section:bg-accent transition-all"></span>
+                {feat}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="pt-8 border-t border-accent/10 mt-auto flex items-center justify-between">
+        <div class="flex flex-wrap gap-2">
+            {proj.skills.map(skill => (
+            <span class="px-3 py-1 bg-bg-primary/50 border border-accent/10 rounded-full text-[10px] text-txt-secondary font-bold uppercase tracking-widest hover:bg-accent/30 hover:text-accent transition-all duration-300">
+                {skill}
+            </span>
+            ))}
+        </div>
+        </div>
+        <button 
+  class="open-drawer-btn text-[10px] font-bold tracking-widest text-accent uppercase mt-4 hover:underline"
+  data-project={JSON.stringify(proj)} 
+>
+  VIEW TECHNICAL LOGS [+]
+</button>
+      </div>
+    ))}
+  </div>
+</section>

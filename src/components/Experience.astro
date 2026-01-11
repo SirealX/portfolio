@@ -1,0 +1,88 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// We define the structure here, but pull the strings from t()
+const experiences = [
+  {
+    role: t('exp1.role'),
+    company: t('exp1.company'),
+    date: t('exp1.date'),
+    location: t('exp1.location'),
+    summary: t('exp1.summary'),
+    responsibilities: [
+      t('exp1.res1'),
+      t('exp1.res2')
+    ],
+    skills: ["Python", "R", "MySQL", "HTML", "CSS", "JavaScript" ]
+  },
+  {
+    role: t('exp2.role'),
+    company: t('exp2.company'),
+    date: t('exp2.date'),
+    location: t('exp2.location'),
+    summary: t('exp2.summary'),
+    responsibilities: [
+      t('exp2.res1'),
+      t('exp2.res2')
+    ],
+    skills: ["Microsoft Office", "Zoom", "Outlook"]
+  }
+];
+---
+
+<div class="max-w-3xl">
+  <h2 class="text-4xl font-bold text-txt-primary mb-12 ml-4">{t('experience.title')}</h2>
+
+  <div class="relative border-l border-accent/10 ml-4 pb-12">
+  {experiences.map((exp) => (
+    <div class="mb-16 last:mb-0 relative group/entry">
+      
+      <div class="absolute -left-1.25 top-2 h-2 w-2 rounded-full bg-zinc-700 group-hover/entry:bg-accent group-hover/entry:shadow-[0_0_8px_rgba(var(--color-accent),0.5)] transition-all duration-500"></div>
+
+      <div class="pl-10">
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold text-txt-primary tracking-tight">
+            {exp.role} <span class="text-zinc-600 font-light mx-1">@</span> 
+            <span class="text-txt-primary/90 hover:text-accent transition-colors cursor-pointer">{exp.company}</span>
+          </h3>
+          <div class="flex gap-4 mt-1">
+            <p class="text-[10px] uppercase tracking-[0.2em] text-txt-secondary font-bold">{exp.location}</p>
+            <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 font-bold">{exp.date}</p>
+          </div>
+        </div>
+
+        <div class="relative group/section mb-6 p-3 -ml-3 rounded-xl hover:bg-glass-fill transition-colors duration-300">
+          <h4 class="text-[11px] uppercase tracking-widest text-txt-secondary font-bold mb-2">{t('experience.summary_label')}</h4>
+          <p class="text-txt-secondary text-[15px] leading-relaxed">
+            {exp.summary}
+          </p>
+        </div>
+
+        <div class="relative group/section p-3 -ml-3 rounded-xl hover:bg-glass-fill transition-colors duration-300">
+          <h4 class="text-[11px] uppercase tracking-widest text-txt-secondary font-bold mb-2">{t('experience.focus_label')}</h4>
+          <ul class="space-y-2">
+            {exp.responsibilities.map(res => (
+              <li class="flex items-start gap-3 text-sm text-txt-secondary">
+                <span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-bg-secondary group-hover/section:bg-accent transition-colors"></span>
+                {res}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-8">
+          {exp.skills.map(skill => (
+            <span class="px-3 py-1 bg-bg-secondary/30 border border-accent/10 rounded-full text-[11px] text-txt-secondary hover:text-accent hover:bg-accent/30 transition-all cursor-default">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+    ))}
+    </div>
+  </div>
+</div>

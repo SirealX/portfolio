@@ -1,0 +1,117 @@
+<div id="project-drawer" class="fixed inset-0 z-999 hidden items-center justify-center">
+  <!-- FULLSCREEN BLUR BACKDROP -->
+  <div
+    id="drawer-backdrop"
+    class="fixed inset-0 bg-transparent backdrop-blur-xl transition-opacity duration-300"
+  ></div>
+
+  <!-- DRAWER PANEL -->
+  <div
+    class="relative z-10 w-full max-w-md bg-glass-fill backdrop-blur-2xl border border-glass-border rounded-3xl p-8 shadow-2xl animate-in zoom-in-95 duration-200 pointer-events-auto"
+  >
+    <button
+      id="close-drawer"
+      class="absolute top-4 right-4 text-txt-secondary hover:text-accent p-2 transition-colors"
+    >
+      <span class="text-xs font-mono uppercase tracking-widest">Close [x]</span>
+    </button>
+
+    <div
+      id="drawer-content-area"
+      class="bg-glass-fill-soft border border-(--color-glass-border-soft) backdrop-blur-md rounded-2xl p-6 mt-6"
+    ></div>
+  </div>
+</div>
+
+<style is:global>
+  #project-drawer.active {
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
+  }
+  
+  #project-drawer.active #drawer-backdrop {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+</style>
+<script>
+  // Define the structure for TypeScript
+  interface ProjectLog {
+    date: string;
+    event: string;
+  }
+
+  interface ProjectData {
+    title: string;
+    logs: ProjectLog[];
+    github: string;
+    line: string;
+  }
+
+  function initProjectDrawer() {
+    const drawer = document.getElementById('project-drawer');
+    const content = document.getElementById('drawer-content-area');
+    const closeBtn = document.getElementById('close-drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+    const buttons = document.querySelectorAll('.open-drawer-btn');
+
+    // FIX: Added explicit types to parameters
+    const toggle = (show: boolean, data: ProjectData | null = null) => {
+      if (!drawer || !content) return;
+
+      if (show && data) {
+        content.innerHTML = `
+          <div class="animate-in fade-in slide-in-from-right-8 duration-500">
+            <h2 class="text-4xl font-black text-txt-primary italic uppercase mb-8 leading-none tracking-tighter">
+              ${data.title}
+            </h2>
+            
+            <div class="space-y-6">
+              ${data.logs ? data.logs.map(log => `
+                <div class="border-l-2 border-accent/30 pl-6 py-2 group">
+                  <span class="text-[10px] font-mono text-accent/60 group-hover:text-accent transition-colors">
+                    [ ${log.date} ]
+                  </span>
+                  <p class="text-sm text-txt-secondary mt-1 leading-relaxed">
+                    ${log.event}
+                  </p>
+                </div>
+              `).join('') : '<p class="text-xs italic text-txt-secondary/50">No logs initialized...</p>'}
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-accent/10">
+              <a href="${data.github}" target="_blank" 
+                 class="inline-flex items-center gap-3 px-8 py-4 bg-accent text-bg-primary font-bold uppercase tracking-tighter rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(var(--color-accent),0.3)]">
+                ${data.line} ↗
+              </a>
+            </div>
+          </div>
+        `;
+      }
+
+      drawer.classList.toggle('hidden', !show);
+      drawer.classList.toggle('flex', show);
+      document.body.style.overflow = show ? 'hidden' : '';
+    };
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const rawData = btn.getAttribute('data-project');
+        if (rawData) {
+          try {
+            const data: ProjectData = JSON.parse(rawData);
+            toggle(true, data);
+          } catch (e) {
+            console.error("JSON Parse Error:", e);
+          }
+        }
+      });
+    });
+
+    closeBtn?.addEventListener('click', () => toggle(false));
+    backdrop?.addEventListener('click', () => toggle(false));
+  }
+
+  initProjectDrawer();
+  document.addEventListener('astro:after-swap', initProjectDrawer);
+</script>

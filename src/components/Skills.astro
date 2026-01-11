@@ -1,0 +1,55 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const skillGroups = [
+  {
+    title: t('skills.category.Web'),
+    skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Node.js"]
+  },
+  {
+    title: t('skills.category.software'),
+    skills: ["Java", "Python", "PHP", "C#"]
+  },
+  {
+    title: t('skills.category.data'),
+    skills: ["NumPy", "Pandas", "R", "MySQL", "MangoDB"]
+  },
+  {
+    title: t('skills.category.robotics'),
+    skills: ["Arduino", "Rasberry Pi", "PCB"]
+  },
+];
+---
+
+<section class="mt-32 px-4 w-full pb-20">
+  <h2 class="text-4xl font-bold text-txt-primary mb-12 tracking-tighter ml-4">
+    {t('skills.title')}
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
+    {skillGroups.map((group) => (
+      <div class="group/skill relative p-0.5 rounded-4xl bg-bg-secondary/10 border border-accent/10 hover:border-glass-border transition-all duration-700 flex flex-col">
+        
+        <div class="mb-6 flex items-center gap-3">
+          <div class="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(34,211,238,0.4)]"></div>
+          <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-txt-secondary m-0.5">
+            {group.title}
+          </h3>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          {group.skills.map(skill => (
+            <span class="px-3 py-1 bg-bg-primary/50 border border-accent/10 rounded-full text-[10px] text-txt-secondary font-bold uppercase tracking-widest hover:bg-accent/30 hover:text-accent transition-all duration-300 cursor-default">
+              {skill}
+            </span>
+          ))}
+        </div>
+
+        <div class="absolute inset-0 bg-linear-to-br from-cyan-500/0 group-hover/skill:from-accent/5 to-transparent group-hover/skill:to-transparent rounded-4xl transition-all duration-700 -z-10"></div>
+      </div>
+    ))}
+  </div>
+</section>

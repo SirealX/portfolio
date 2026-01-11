@@ -1,0 +1,37 @@
+---
+import { Github, Linkedin, Mail, MessageCircleMore, LayoutGrid } from '@lucide/astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'; // Adjust path to your actual utils
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const socialLinks = [
+  { href: "mailto:cesarluna.developer@gmail.com", icon: Mail, label: "Email" },
+  { href: "https://github.com/SirealX", icon: Github, label: "GitHub" },
+  { href: "https://www.linkedin.com/in/cesar-augusto-luna-perez-3892621b2/", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://wa.me/573105469158", icon: MessageCircleMore, label: "WhatsApp" }, // Added 4th for the 2x2 grid
+];
+---
+
+<div class="flex items-stretch gap-4 mt-6">
+  <div class="grid grid-cols-2 gap-4 p-6 bg-bg-secondary/50 border border-glass-border rounded-4xl flex-1">
+    {socialLinks.map((link) => (
+      <a 
+        href={link.href} 
+        class="flex items-center justify-center text-txt-secondary hover:text-accent transition-all duration-300 hover:scale-110"
+        aria-label={link.label}
+      >
+        <link.icon size={24} stroke-Width={1.5} />
+      </a>
+    ))}
+  </div>
+
+  <button 
+    id="open-options"
+    class="flex flex-col items-center justify-center gap-2 p-6 bg-bg-secondary/50 border border-glass-border rounded-4xl flex-1 text-txt-secondary hover:text-accent hover:bg-bg-secondary/80 transition-all group"
+    aria-label="More options"
+  >
+    <LayoutGrid size={40} stroke-Width={1} class="group-hover:rotate-12 transition-transform" />
+    <span class="text-[10px] uppercase tracking-tighter font-bold opacity-60">{t("ops.label")}</span>
+  </button>
+</div>

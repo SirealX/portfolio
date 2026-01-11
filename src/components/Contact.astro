@@ -1,0 +1,125 @@
+---
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="mt-32 px-4 w-full pb-20">
+  <div class="relative w-full rounded-[2.5rem] bg-bg-secondary/10 border border-accent/10 p-10 md:p-16 overflow-hidden">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
+      <div>
+        <h2 class="text-6xl font-bold text-txt-primary tracking-tighter mb-8">
+          {t('contact.title')}
+        </h2>
+        <p class="text-txt-secondary text-xl leading-relaxed max-w-md italic font-light">
+          {t("contact.add")}
+        </p>
+      </div>
+
+      <form id="contact-form" class="flex flex-col gap-8">
+        <div class="flex flex-col gap-3">
+          <label class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
+            {t('contact.name')}
+          </label>
+          <input 
+            id="user-name"
+            type="text" 
+            placeholder="John Doe"
+            class="w-full bg-glass-fill border border-accent/10 rounded-2xl p-5 text-txt-primary placeholder:text-txt-secondary focus:outline-none focus:bg-glass-fill focus:border-glass-border transition-all" 
+          />
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <label class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
+            {t('contact.email')}
+          </label>
+          <input 
+            id="user-email"
+            type="email" 
+            placeholder="john@example.com"
+            class="w-full bg-glass-fill border border-accent/10 rounded-2xl p-5 text-txt-primary placeholder:text-txt-secondary focus:outline-none focus:bg-glass-fill focus:border-glass-border transition-all" 
+          />
+        </div>
+        
+        <div class="flex flex-col gap-3">
+          <label class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
+            {t('contact.message')}
+          </label>
+          <textarea
+            id="user-message"
+            rows="5" 
+            placeholder={t("contact.message.placeholder")}
+            class="w-full bg-glass-fill border border-accent/10 rounded-2xl p-5 text-txt-primary placeholder:text-txt-secondary focus:outline-none focus:bg-glass-fill focus:border-glass-border transition-all resize-none"
+          ></textarea>
+        </div>
+
+        <button id="contact-submit-btn" class="group/btn relative w-full overflow-hidden rounded-2xl bg-txt-primary text-bg-primary font-bold py-4 transition-transform active:scale-[0.98]">
+          <span class="relative z-10">{t('contact.send')}</span>
+          <div class="absolute inset-0 bg-accent translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+<script>
+  const SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_CONTACT_ID;
+  const PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_KEY;
+  // We don't need to init here because it's in the Layout, 
+  // but we wait for the library to be ready.
+  // @ts-ignore
+
+  emailjs.init(PUBLIC_KEY);
+  const handleContactSubmit = () => {
+    const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('contact-submit-btn');
+    
+
+    contactForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (submitBtn) {
+        submitBtn.innerText = "TRANSMITTING...";
+        (submitBtn as HTMLButtonElement).disabled = true;
+      }
+
+      // Prepare the parameters for EmailJS
+      const params = {
+        name: (document.getElementById('user-name') as HTMLInputElement).value,
+        reply_to: (document.getElementById('user-email') as HTMLInputElement).value,
+        message: (document.getElementById('user-message') as HTMLTextAreaElement).value,
+      };
+
+      // @ts-ignore (EmailJS is loaded globally)
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
+        .then(() => {
+          if (submitBtn) {
+            submitBtn.innerText = "SIGNAL_RECEIVED";
+            submitBtn.classList.add('bg-green-500/20', 'text-green-500', 'border-green-500/50');
+          }
+          contactForm.reset();
+          
+          // Reset button after 5 seconds
+          setTimeout(() => {
+            if (submitBtn) {
+              submitBtn.innerText = "SEND_SIGNAL";
+              submitBtn.classList.remove('bg-green-500/20', 'text-green-500', 'border-green-500/50');
+              (submitBtn as HTMLButtonElement).disabled = false;
+            }
+          }, 5000);
+        })
+        .catch((err: any) => {
+          console.error("FAILED...", err);
+          if (submitBtn) {
+            submitBtn.innerText = "TRANSMISSION_ERROR";
+            (submitBtn as HTMLButtonElement).disabled = false;
+          }
+        });
+    });
+  };
+
+  // Run on initial load and after Astro swaps pages
+  handleContactSubmit();
+  document.addEventListener('astro:after-swap', handleContactSubmit);
+</script>

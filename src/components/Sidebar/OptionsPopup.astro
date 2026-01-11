@@ -1,0 +1,154 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+import.meta.env.PUBLIC_EMAILJS_TEMPLATE_CV_ID
+import.meta.env.PUBLIC_EMAILJS_KEY
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Dynamically set the CV path based on language
+const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
+---
+
+<div id="action-modal" class="fixed inset-0 z-9999 hidden items-center justify-center p-4">
+  <div id="modal-backdrop" class="absolute inset-0 bg-transparent backdrop-blur-xl transition-opacity duration-300"></div>
+
+  <div class="relative w-full max-w-md bg-glass-fill backdrop-blur-2xl border border-glass-border rounded-[2.5rem] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.35),0_0_40px_rgba(6,182,212,0.08)] overflow-hidden pointer-events-auto">
+    <button id="close-modal" class="absolute top-6 right-6 text-txt-secondary hover:text-accent transition-colors z-10">✕</button>
+    
+    <div class="relative z-10">
+      <h2 class="text-2xl font-black uppercase tracking-tighter text-txt-primary">{t("ops.oprratiolabel")}</h2>
+      <p class="text-[10px] uppercase tracking-[0.3em] text-accent font-bold mb-8">{t("ops.operation.system")}</p>
+      
+      <div id="options-container" class="space-y-4">
+        <div class="flex space-x-4">
+          <a href={cvPath} download class="group flex items-center justify-between p-4 bg-glass-fill-soft border border-glass-border backdrop-blur-md rounded-2xl hover:border-accent/40 transition-all w-full">
+            <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">📄</div>
+              <div>
+                <p class="text-xs font-bold text-txt-primary uppercase">{t('ops.cvlabel')}</p>
+                <p class="text-[11px] text-txt-secondary uppercase tracking-widest group-hover:text-accent">{t('ops.cvsub')}</p>
+              </div>
+            </div>
+          </a>
+          <button id="email-toggle-btn" class="w-full group flex items-center justify-between p-4 bg-glass-fill-soft border border-glass-border-soft backdrop-blur-md rounded-2xl hover:border-accent/40 transition-all text-left">
+            <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">✉️</div>
+            <div>
+              <p class="text-xs font-bold text-txt-primary uppercase">{t('ops.emaillabel')}</p>
+              <p class="text-[11px] text-txt-secondary uppercase tracking-widest group-hover:text-accent">{t('ops.emailsub')}</p>
+            </div>
+            </div>
+          </button>
+        </div>
+
+        <form id="email-form" class="hidden animate-in slide-in-from-top-4 duration-300 space-y-2">
+          <input 
+            type="email" 
+            id="user-email" 
+            placeholder={t("ops.destination")} 
+            required
+            class="w-full bg-black/20 border border-accent/20 rounded-xl p-4 text-xs font-mono text-accent placeholder:text-accent/30 focus:outline-none focus:border-accent"
+          />
+          <button id="cv-submit-btn" type="submit" class="w-full py-3 bg-accent text-bg-primary font-bold text-[10px] uppercase tracking-[0.2em] rounded-xl hover:scale-[1.02] transition-transform">
+            {t("ops.transfer")}
+          </button>
+        </form>
+
+        <div id="status-bar" class="p-4 rounded-2xl bg-black/20 border border-accent/5 transition-all">
+          <div class="flex items-center justify-between">
+            <span id="status-text" class="text-[9px] text-txt-secondary uppercase tracking-widest font-mono italic">{t("ops.system")}</span>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initModal() {
+    const modal = document.getElementById('action-modal');
+    const openBtn = document.getElementById('open-options');
+    const closeBtn = document.getElementById('close-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+    
+    const emailToggleBtn = document.getElementById('email-toggle-btn');
+    const emailForm = document.getElementById('email-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('cv-submit-btn');
+    const statusText = document.getElementById('status-text');
+
+    // 1. Modal Visibility Logic
+    const toggleModal = (show: boolean) => {
+      modal?.classList.toggle('hidden', !show);
+      modal?.classList.toggle('flex', show);
+      document.body.style.overflow = show ? 'hidden' : '';
+      
+      if (!show) {
+        emailForm?.classList.add('hidden');
+        if (statusText) statusText.innerText = "System_Ready";
+      }
+    };
+
+    openBtn?.addEventListener('click', () => toggleModal(true));
+    closeBtn?.addEventListener('click', () => toggleModal(false));
+    backdrop?.addEventListener('click', () => toggleModal(false));
+
+    emailToggleBtn?.addEventListener('click', () => {
+      emailForm?.classList.toggle('hidden');
+    });
+
+    // 2. EmailJS Submission Logic
+    emailForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // IMPORTANT: Replace these with your actual IDs from EmailJS
+      const SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+      const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_CV_ID;
+      const PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_KEY;
+
+      if (submitBtn) {
+        submitBtn.innerText = "UPLOADING...";
+        (submitBtn as HTMLButtonElement).disabled = true;
+      }
+      if (statusText) statusText.innerText = "ESTABLISHING UPLINK...";
+
+      // @ts-ignore
+      emailjs.init(PUBLIC_KEY);
+
+      // Get the current language from the URL or a data attribute
+      const isSpanish = window.location.pathname.includes('/es');
+      const cvLink = window.location.origin + (isSpanish ? '/cv-es.pdf' : '/cv-en.pdf');
+
+      const params = {
+        email: (document.getElementById('user-email') as HTMLInputElement).value,
+        cv_link: cvLink,
+        email_header: isSpanish ? 'ACCESO CONCEDIDO' : 'ACCESS GRANTED',
+      };
+
+      // @ts-ignore
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
+        .then(() => {
+          if (submitBtn) submitBtn.innerText = "TRANSFER COMPLETE";
+          if (statusText) statusText.innerText = "FILE DISPATCHED SUCCESSFULLY";
+          emailForm.reset();
+        })
+        .catch((err: any) => {
+          console.error("CV TRANSFER FAILED", err);
+          if (statusText) statusText.innerText = "UPLINK ERROR RETRY";
+          if (submitBtn) {
+             submitBtn.innerText = "RETRY TRANSFER";
+             (submitBtn as HTMLButtonElement).disabled = false;
+          }
+        });
+    });
+  }
+
+  // Initialize on load and on page swaps
+  initModal();
+  document.addEventListener('astro:page-load', initModal);
+  document.addEventListener('astro:after-swap', initModal);
+</script>
+</script>

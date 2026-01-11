@@ -1,0 +1,37 @@
+---
+import Sidebar from '../components/Sidebar/Sidebar.astro';
+// 1. Import your new Background component
+import NetworkBackground from '../components/NetworkBackground.astro';
+import { getLangFromUrl } from '../i18n/utils';
+import '../styles/global.css';
+import OptionsPopup from '../components/Sidebar/OptionsPopup.astro';
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <title>Cesar Luna | Student Portfolio</title>
+  </head>
+  <body class="bg-background text-txt-primary selection:bg-glass-fill0 overflow-x-hidden">
+    
+    <NetworkBackground />
+
+    <div class="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+      <div class="flex flex-col md:flex-row gap-16 lg:gap-24">
+        
+        <aside class="w-full md:w-80 pt-12 md:sticky md:top-0 md:h-screen">
+          <Sidebar />
+        </aside>
+        <OptionsPopup />
+        <main class="flex-1 pt-12">
+          <slot />
+        </main>
+        
+      </div>
+    </div>
+  </body>
+</html>
