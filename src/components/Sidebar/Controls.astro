@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const { pathname } = Astro.url;
 const isEn = pathname.startsWith('/en');
 const toggleLangPath = isEn ? pathname.replace('/en', '/es') : pathname.replace('/es', '/en');
@@ -22,7 +26,7 @@ const toggleLangPath = isEn ? pathname.replace('/en', '/es') : pathname.replace(
   </div>
 
   <div class="flex items-center gap-3">
-    <span class="text-[8px] font-black uppercase tracking-[0.2em] text-txt-secondary">Mode</span>
+    <span class="text-[8px] font-black uppercase tracking-[0.2em] text-txt-secondary">{t("mode")}</span>
     <button id="theme-switch" aria-label="Toggle Theme" class="relative w-12 h-6 bg-bg-secondary border border-accent/20 rounded-full p-1 transition-all hover:border-accent/40">
       <div id="theme-knob" class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 flex items-center justify-center shadow-lg bg-accent shadow-accent/50">
         <div class="w-1 h-1 bg-bg-primary rounded-full opacity-40"></div>
@@ -36,16 +40,13 @@ const toggleLangPath = isEn ? pathname.replace('/en', '/es') : pathname.replace(
   const knob = document.getElementById('theme-knob');
   const html = document.documentElement;
 
-  // Initialize from LocalStorage or System Preference
   const savedTheme = localStorage.getItem('theme') || 'dark';
   html.setAttribute('data-theme', savedTheme);
   updateUI(savedTheme === 'light');
 
   function updateUI(isLight: boolean) {
     if (knob) {
-      // Move knob and change glow
       knob.style.transform = isLight ? 'translateX(24px)' : 'translateX(0)';
-      // Note: Tailwind v4 handles the 'bg-accent' transition automatically via CSS variables
     }
   }
 

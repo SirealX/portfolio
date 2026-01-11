@@ -37,7 +37,6 @@ const t = useTranslations(lang);
 </div>
 
 <script>
-  // Script remains exactly the same logic-wise
   const socket = document.getElementById('eye-socket');
   const pupil = document.getElementById('eye-pupil');
   const timeElement = document.getElementById('live-time');
@@ -49,7 +48,6 @@ const t = useTranslations(lang);
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-    // Distance limited to 15 to stay inside the smaller socket
     const distance = Math.min(15, Math.hypot(e.clientX - centerX, e.clientY - centerY) / 15);
     pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
   });

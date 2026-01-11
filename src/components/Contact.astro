@@ -66,10 +66,8 @@ const t = useTranslations(lang);
   const SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
   const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_CONTACT_ID;
   const PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_KEY;
-  // We don't need to init here because it's in the Layout, 
-  // but we wait for the library to be ready.
-  // @ts-ignore
 
+  // @ts-ignore
   emailjs.init(PUBLIC_KEY);
   const handleContactSubmit = () => {
     const contactForm = document.getElementById('contact-form') as HTMLFormElement;
@@ -84,14 +82,14 @@ const t = useTranslations(lang);
         (submitBtn as HTMLButtonElement).disabled = true;
       }
 
-      // Prepare the parameters for EmailJS
+
       const params = {
         name: (document.getElementById('user-name') as HTMLInputElement).value,
         reply_to: (document.getElementById('user-email') as HTMLInputElement).value,
         message: (document.getElementById('user-message') as HTMLTextAreaElement).value,
       };
 
-      // @ts-ignore (EmailJS is loaded globally)
+      // @ts-ignore
       emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
         .then(() => {
           if (submitBtn) {
@@ -100,7 +98,7 @@ const t = useTranslations(lang);
           }
           contactForm.reset();
           
-          // Reset button after 5 seconds
+
           setTimeout(() => {
             if (submitBtn) {
               submitBtn.innerText = "SEND_SIGNAL";
@@ -119,7 +117,6 @@ const t = useTranslations(lang);
     });
   };
 
-  // Run on initial load and after Astro swaps pages
   handleContactSubmit();
   document.addEventListener('astro:after-swap', handleContactSubmit);
 </script>

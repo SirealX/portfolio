@@ -9,6 +9,7 @@ export const ui = {
     'sidebar.about_title': 'About Me',
     'sidebar.subtitle': 'Computer Science student building practical, technology-driven projects. I focus on turning ideas into clean, functional solutions through code and systems, learning and documenting them along the way.',
     //Module
+    'mode' :'Mode',
     'active': 'SYSTEM.ACTIVE',
     'time.Station': 'LOCAL STATION',
     //Lables Experience
@@ -60,7 +61,7 @@ export const ui = {
     'pj2.f2': 'Self-managed database for inventory and orders',
     'pj2.f3': 'Integrated payment options and optional API connections',
     'pj2.f4': 'Fully responsive and accessible on any device',
-    'pj2.line': 'Visit Web site',
+    'pj2.line': 'Not Available',
     'pj2.log1.date': '15-09-2025',
     'pj2.log1.event': 'Initial concept began',
     'pj2.log2.date': '19-09-2025',
@@ -98,9 +99,10 @@ export const ui = {
   },
   es: {
         'hero.title': 'Estudiante de Ciencia de la computacion y Desarrollador ',
-    'sidebar.about_title': 'sovre mi',
+    'sidebar.about_title': 'sobre mi',
     'sidebar.subtitle': 'Estudiante de Ciencias de la Computación, construyendo proyectos prácticos e inspirados por tecnología Me enfoco en transformar ideas en soluciones funcionales a través de código y sistemas, aprendiendo y documentando todo en el camino.',
     //Module
+    'mode' :'Modo',
     'active': 'SISTEMA.ACTIVADO',
     'time.Station': 'ESTACION LOCAL',
     //Lables Experience
@@ -152,7 +154,7 @@ export const ui = {
     'pj2.f2': 'Base de datos independiente para inventario y órdenes.',
     'pj2.f3': 'Conexiones con API e integración completa de opciones de pago.',
     'pj2.f4': 'Completamente receptivo y accesible desde cualquier dispositivo. ',
-    'pj2.line': 'Visita la página web.',
+    'pj2.line': 'Fuera de Servicio',
     'pj2.log1.date': '15-09-2025',
     'pj2.log1.event': 'Conceptualización inicial',
     'pj2.log2.date': '19-09-2025',
@@ -166,7 +168,7 @@ export const ui = {
     'skills.category.data': 'Base de Datos & Análisis de Datos',
     'skills.category.robotics': 'Robotico & Electronico',
     // Contact
-    'contact.title': 'Contactanos',
+    'contact.title': 'Déjanos tu Mensaje',
     'contact.add': 'Siempre emocionado y dispuesto a colaborar en proyectos nuevos y aprender nuevas tecnologías; siéntete libre de comunicarte.',
     'contact.name': 'Nombre',
     'contact.email': 'Email',

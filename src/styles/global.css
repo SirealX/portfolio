@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @theme{
-  /* Default Colors (Dark Mode) */
+  /* Dark Mode*/
   --color-bg-primary: #0a0a0b;
   --color-bg-secondary: #121214;
   --color-txt-primary: #e4e4e7;
@@ -12,7 +12,7 @@
   --color-glass-border: rgba(255, 255, 255, 0.1);
   --color-glass-border-soft: rgba(255, 255, 255, 0.06);
   --particle-rgb: 255, 255, 255;
-  /* Typography - Site A uses clean, tight tracking */
+  /* Typography */
   --font-sans: "Inter", "system-ui", sans-serif;
 }
 [data-theme="light"] {
@@ -34,26 +34,22 @@
     @apply bg-bg-primary text-txt-primary transition-colors duration-300;
   }
 }
-
-/* Hide scrollbar for Chrome, Safari and Opera */
+/* Hide scrollbar */
 ::-webkit-scrollbar {
   display: none;
 }
-
-/* Hide scrollbar for IE, Edge and Firefox */
 html {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
   scroll-behavior: smooth;
 }
 @media (max-height: 800px) {
   .sidebar-container {
-    padding: 1rem; /* Reduce padding on short screens */
+    padding: 1rem; 
   }
   .mascot-box {
-    display: none; /* Optional: Hide the eye on very small screens to save the clock */
+    display: none; 
   }
-  /* Or simply scale everything down */
   aside {
     zoom: 0.9; 
   }

@@ -1,11 +1,8 @@
 <div id="project-drawer" class="fixed inset-0 z-999 hidden items-center justify-center">
-  <!-- FULLSCREEN BLUR BACKDROP -->
   <div
     id="drawer-backdrop"
     class="fixed inset-0 bg-transparent backdrop-blur-xl transition-opacity duration-300"
   ></div>
-
-  <!-- DRAWER PANEL -->
   <div
     class="relative z-10 w-full max-w-md bg-glass-fill backdrop-blur-2xl border border-glass-border rounded-3xl p-8 shadow-2xl animate-in zoom-in-95 duration-200 pointer-events-auto"
   >
@@ -35,7 +32,6 @@
   }
 </style>
 <script>
-  // Define the structure for TypeScript
   interface ProjectLog {
     date: string;
     event: string;
@@ -54,8 +50,6 @@
     const closeBtn = document.getElementById('close-drawer');
     const backdrop = document.getElementById('drawer-backdrop');
     const buttons = document.querySelectorAll('.open-drawer-btn');
-
-    // FIX: Added explicit types to parameters
     const toggle = (show: boolean, data: ProjectData | null = null) => {
       if (!drawer || !content) return;
 

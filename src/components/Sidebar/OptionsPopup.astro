@@ -6,7 +6,6 @@ import.meta.env.PUBLIC_EMAILJS_KEY
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Dynamically set the CV path based on language
 const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
 ---
 
@@ -80,7 +79,7 @@ const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
     const submitBtn = document.getElementById('cv-submit-btn');
     const statusText = document.getElementById('status-text');
 
-    // 1. Modal Visibility Logic
+
     const toggleModal = (show: boolean) => {
       modal?.classList.toggle('hidden', !show);
       modal?.classList.toggle('flex', show);
@@ -100,11 +99,11 @@ const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
       emailForm?.classList.toggle('hidden');
     });
 
-    // 2. EmailJS Submission Logic
+
     emailForm?.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // IMPORTANT: Replace these with your actual IDs from EmailJS
+
       const SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
       const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_CV_ID;
       const PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_KEY;
@@ -118,7 +117,7 @@ const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
       // @ts-ignore
       emailjs.init(PUBLIC_KEY);
 
-      // Get the current language from the URL or a data attribute
+
       const isSpanish = window.location.pathname.includes('/es');
       const cvLink = window.location.origin + (isSpanish ? '/cv-es.pdf' : '/cv-en.pdf');
 
@@ -145,8 +144,6 @@ const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
         });
     });
   }
-
-  // Initialize on load and on page swaps
   initModal();
   document.addEventListener('astro:page-load', initModal);
   document.addEventListener('astro:after-swap', initModal);

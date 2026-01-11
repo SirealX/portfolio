@@ -1,6 +1,6 @@
 ---
 import { Github, Linkedin, Mail, MessageCircleMore, LayoutGrid } from '@lucide/astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils'; // Adjust path to your actual utils
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'; 
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -9,7 +9,7 @@ const socialLinks = [
   { href: "mailto:cesarluna.developer@gmail.com", icon: Mail, label: "Email" },
   { href: "https://github.com/SirealX", icon: Github, label: "GitHub" },
   { href: "https://www.linkedin.com/in/cesar-augusto-luna-perez-3892621b2/", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://wa.me/573105469158", icon: MessageCircleMore, label: "WhatsApp" }, // Added 4th for the 2x2 grid
+  { href: "https://wa.me/573105469158", icon: MessageCircleMore, label: "WhatsApp" }, 
 ];
 ---
 
