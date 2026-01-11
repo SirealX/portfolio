@@ -7,7 +7,7 @@ import Contact  from '../components/Contact.astro';
 import Footer from '../components/Footer.astro'
 import MainLayout from '../layouts/MainLayout.astro';
 ---
-
+<meta http-equiv="refresh" content="0;url=/en/" />
 <MainLayout>
 <div class="space-y-24 mb-24">
     <Experience />
@@ -18,3 +18,12 @@ import MainLayout from '../layouts/MainLayout.astro';
     
     </div>
 </MainLayout>
+<script is:inline>
+  // This detects the browser language and sends them to the right version
+  const lang = window.navigator.language.split('-')[0];
+  if (lang === 'es') {
+    window.location.pathname = '/es/';
+  } else {
+    window.location.pathname = '/en/';
+  }
+</script>
