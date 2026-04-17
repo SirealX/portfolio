@@ -1,0 +1,56 @@
+{
+  "title": "FinanceOS",
+  "year": "2026",
+  "description": "Tracking my finances in Excel was completely manual, every transaction logged by hand. I built a full-stack app to automate it, with real bank sync, smart alerts, and a debt payoff simulator.",
+  "status": "ongoing",
+  "features": [
+    "Debt payoff simulator with Waterfall and Snowball strategies",
+    "CSV/XLSX bulk import from real bank statement downloads",
+    "Rule-based alert engine that evaluates over-budget and spending spike conditions on every transaction write"
+  ],
+  "skills": [
+    "React 19",
+    "FastAPI",
+    "PostgreSQL",
+    "SQLAlchemy",
+    "Supabase",
+    "Alembic",
+    "Chart.js",
+    "Tailwind CSS",
+    "Vercel",
+    "Render"
+  ],
+  "github": "https://github.com/SirealX/FinanceOS",
+  "demo": "https://project-financeos.vercel.app",
+  "logs": [
+    {
+      "date": "06-04-2026",
+      "event": "Initial concept began"
+    },
+    {
+      "date": "07-04-2026",
+      "event": "Backend API and database schema completed"
+    },
+    {
+      "date": "08-04-2026",
+      "event": "DB migration frontend and backend connection"
+    },
+    {
+      "date": "09-04-2026",
+      "event": "Main web functions completed"
+    },
+    {
+      "date": "11-04-2026",
+      "event": "Telegram bot & PWA push feature completed"
+    },
+    {
+      "date": "12-04-2026",
+      "event": "single user & demo testing"
+    },
+    {
+      "date": "15-04-2026",
+      "event": "live deployment & multi-user testing"
+    }
+  ],
+  "cta": "view demo"
+}

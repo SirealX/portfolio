@@ -1,0 +1,32 @@
+{
+  "title": "Web Portfolio",
+  "year": "2026",
+  "description": "This project is a personal web portfolio combining a student project showcase with a professional resume.",
+  "status": "complete",
+  "features": [
+    "Displays projects alongside skills and experience in a single, structured website.",
+    "Built with Astro, TypeScript, and TailWind for performance, maintainability, and scalability.",
+    "Structured to be updated and modified as need it, with modularity and sustainability in mind"
+  ],
+  "skills": ["Astro", "TypeScript", "VITE", "TailWind CSS"],
+  "github": "https://github.com/SirealX/portfolio",
+  "logs": [
+    {
+      "date": "01-10-2025",
+      "event": "Initial concept began"
+    },
+    {
+      "date": "08-01-2026",
+      "event": "Technical development completed"
+    },
+    {
+      "date": "10-01-2026",
+      "event": "Main content and information added"
+    },
+    {
+      "date": "11-01-2026",
+      "event": "Final deployment and project completion"
+    }
+  ],
+  "cta": "Access Source Code"
+}

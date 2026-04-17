@@ -40,8 +40,9 @@
   interface ProjectData {
     title: string;
     logs: ProjectLog[];
-    github: string;
-    line: string;
+    github?: string;
+    demo?: string;
+    cta: string;
   }
 
   function initProjectDrawer() {
@@ -74,9 +75,9 @@
             </div>
 
             <div class="mt-12 pt-8 border-t border-accent/10">
-              <a href="${data.github}" target="_blank" 
+              <a href="${data.demo ?? data.github ?? '#'}" target="_blank" 
                  class="inline-flex items-center gap-3 px-8 py-4 bg-accent text-bg-primary font-bold uppercase tracking-tighter rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(var(--color-accent),0.3)]">
-                ${data.line} ↗
+                ${data.cta} ↗
               </a>
             </div>
           </div>
