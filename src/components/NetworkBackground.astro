@@ -106,21 +106,45 @@
     }
   }
 
+  let animationId: number | null = null;
+
   function loop() {
     const settings = getThemeSettings();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { 
-      p.update(); 
-      p.draw(settings.particleColor, settings.radius); 
+    particles.forEach(p => {
+      p.update();
+      p.draw(settings.particleColor, settings.radius);
     });
     drawLines(settings);
-    requestAnimationFrame(loop);
+    animationId = requestAnimationFrame(loop);
   }
+
+  function startLoop() {
+    if (animationId === null) {
+      animationId = requestAnimationFrame(loop);
+    }
+  }
+
+  function stopLoop() {
+    if (animationId !== null) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  }
+
+  // Pause the animation when the tab is not visible to save CPU
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopLoop();
+    } else {
+      startLoop();
+    }
+  });
 
   window.addEventListener('resize', init);
   window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
   window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
 
   init();
-  loop();
+  startLoop();
 </script>

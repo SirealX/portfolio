@@ -11,14 +11,19 @@ const lang = getLangFromUrl(Astro.url);
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Computer Science student building practical, technology-driven projects. I focus on turning ideas into clean, functional solutions through code and systems, learning and documenting them along the way." />
-    <meta property="og:title" content="Cesar Luna | CS Student & Developer"/>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Cesar Luna | CS Student & Developer" />
     <meta property="og:description" content="Computer Science student building practical, technology-driven projects. I focus on turning ideas into clean, functional solutions through code and systems, learning and documenting them along the way." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://cesarluna-dev.vercel.app/en/" />
-    <!--<meta property="og:image" content="..." />-->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <meta property="og:image" content="https://cesarluna-dev.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- LinkedIn -->
+    <meta name="author" content="Cesar Luna" />
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <title>Cesar Luna | Student Portfolio</title>
   </head>
   <body class="bg-background text-txt-primary selection:bg-glass-fill0 overflow-x-hidden">

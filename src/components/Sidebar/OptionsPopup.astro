@@ -1,8 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-import.meta.env.PUBLIC_EMAILJS_TEMPLATE_CV_ID
-import.meta.env.PUBLIC_EMAILJS_KEY
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -42,10 +40,10 @@ const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
         </div>
 
         <form id="email-form" class="hidden animate-in slide-in-from-top-4 duration-300 space-y-2">
-          <input 
-            type="email" 
-            id="user-email" 
-            placeholder={t("ops.destination")} 
+          <input
+            type="email"
+            id="cv-destination-email"
+            placeholder={t("ops.destination")}
             required
             class="w-full bg-black/20 border border-accent/20 rounded-xl p-4 text-xs font-mono text-accent placeholder:text-accent/30 focus:outline-none focus:border-accent"
           />
@@ -114,7 +112,6 @@ const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
       }
       if (statusText) statusText.innerText = "ESTABLISHING UPLINK...";
 
-      // @ts-ignore
       emailjs.init(PUBLIC_KEY);
 
 
@@ -122,12 +119,11 @@ const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
       const cvLink = window.location.origin + (isSpanish ? '/cv-es.pdf' : '/cv-en.pdf');
 
       const params = {
-        email: (document.getElementById('user-email') as HTMLInputElement).value,
+        email: (document.getElementById('cv-destination-email') as HTMLInputElement).value,
         cv_link: cvLink,
         email_header: isSpanish ? 'ACCESO CONCEDIDO' : 'ACCESS GRANTED',
       };
 
-      // @ts-ignore
       emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
         .then(() => {
           if (submitBtn) submitBtn.innerText = "TRANSFER COMPLETE";
@@ -147,5 +143,4 @@ const cvPath = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
   initModal();
   document.addEventListener('astro:page-load', initModal);
   document.addEventListener('astro:after-swap', initModal);
-</script>
 </script>

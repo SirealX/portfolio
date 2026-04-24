@@ -34,6 +34,13 @@
     @apply bg-bg-primary text-txt-primary transition-colors duration-300;
   }
 }
+
+/* Keyboard focus ring using the accent color */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 /* Hide scrollbar */
 ::-webkit-scrollbar {
   display: none;
@@ -45,13 +52,15 @@ html {
 }
 @media (max-height: 800px) {
   .sidebar-container {
-    padding: 1rem; 
+    padding: 1rem;
   }
   .mascot-box {
-    display: none; 
+    display: none;
   }
+  /* zoom is non-standard — use transform for cross-browser support */
   aside {
-    zoom: 0.9; 
+    transform: scale(0.9);
+    transform-origin: top left;
   }
 }
 #action-modal.flex .relative {

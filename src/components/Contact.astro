@@ -19,42 +19,48 @@ const t = useTranslations(lang);
 
       <form id="contact-form" class="flex flex-col gap-8">
         <div class="flex flex-col gap-3">
-          <label class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
+          <label for="contact-name" class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
             {t('contact.name')}
           </label>
-          <input 
-            id="user-name"
-            type="text" 
+          <input
+            id="contact-name"
+            name="name"
+            type="text"
+            required
             placeholder="John Doe"
-            class="w-full bg-glass-fill border border-accent/10 rounded-2xl p-5 text-txt-primary placeholder:text-txt-secondary focus:outline-none focus:bg-glass-fill focus:border-glass-border transition-all" 
+            class="w-full bg-glass-fill border border-accent/10 rounded-2xl p-5 text-txt-primary placeholder:text-txt-secondary focus:outline-none focus:bg-glass-fill focus:border-glass-border transition-all"
           />
         </div>
 
         <div class="flex flex-col gap-3">
-          <label class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
+          <label for="contact-email" class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
             {t('contact.email')}
           </label>
-          <input 
-            id="user-email"
-            type="email" 
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            required
             placeholder="john@example.com"
-            class="w-full bg-glass-fill border border-accent/10 rounded-2xl p-5 text-txt-primary placeholder:text-txt-secondary focus:outline-none focus:bg-glass-fill focus:border-glass-border transition-all" 
+            class="w-full bg-glass-fill border border-accent/10 rounded-2xl p-5 text-txt-primary placeholder:text-txt-secondary focus:outline-none focus:bg-glass-fill focus:border-glass-border transition-all"
           />
         </div>
-        
+
         <div class="flex flex-col gap-3">
-          <label class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
+          <label for="contact-message" class="text-[10px] uppercase tracking-[0.3em] text-txt-secondary font-black ml-1">
             {t('contact.message')}
           </label>
           <textarea
-            id="user-message"
-            rows="5" 
+            id="contact-message"
+            name="message"
+            rows="5"
+            required
             placeholder={t("contact.message.placeholder")}
             class="w-full bg-glass-fill border border-accent/10 rounded-2xl p-5 text-txt-primary placeholder:text-txt-secondary focus:outline-none focus:bg-glass-fill focus:border-glass-border transition-all resize-none"
           ></textarea>
         </div>
 
-        <button id="contact-submit-btn" class="group/btn relative w-full overflow-hidden rounded-2xl bg-txt-primary text-bg-primary font-bold py-4 transition-transform active:scale-[0.98]">
+        <button id="contact-submit-btn" type="submit" class="group/btn relative w-full overflow-hidden rounded-2xl bg-txt-primary text-bg-primary font-bold py-4 transition-transform active:scale-[0.98]">
           <span class="relative z-10">{t('contact.send')}</span>
           <div class="absolute inset-0 bg-accent translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
         </button>
@@ -67,7 +73,6 @@ const t = useTranslations(lang);
   const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_CONTACT_ID;
   const PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_KEY;
 
-  // @ts-ignore
   emailjs.init(PUBLIC_KEY);
   const handleContactSubmit = () => {
     const contactForm = document.getElementById('contact-form') as HTMLFormElement;
@@ -84,12 +89,11 @@ const t = useTranslations(lang);
 
 
       const params = {
-        name: (document.getElementById('user-name') as HTMLInputElement).value,
-        reply_to: (document.getElementById('user-email') as HTMLInputElement).value,
-        message: (document.getElementById('user-message') as HTMLTextAreaElement).value,
+        name: (document.getElementById('contact-name') as HTMLInputElement).value,
+        reply_to: (document.getElementById('contact-email') as HTMLInputElement).value,
+        message: (document.getElementById('contact-message') as HTMLTextAreaElement).value,
       };
 
-      // @ts-ignore
       emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
         .then(() => {
           if (submitBtn) {
