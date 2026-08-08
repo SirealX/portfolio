@@ -1,6 +1,6 @@
 {
   "title": "POS System",
-  "year": "2023",
+  "year": "2026",
   "description": "A Django-based Point of Sale system covering inventory, sales, staff scheduling, clock-in/out tracking, and business reporting — started after watching a commercial POS system fail at two different bars I worked at: inventory drifted out of sync and sales periodically didn't register. Built from the ground up to understand where that kind of software actually breaks.",
   "status": "complete",
   "features": [
