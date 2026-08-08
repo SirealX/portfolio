@@ -1,0 +1,49 @@
+{
+  "title": "Jewelry E-Commerce Platform",
+  "year": "2025 – 2026",
+  "description": "Built for a friend's mother's independent jewelry business after she hit a wall trying to customize her existing store the template platform she was on (Wix/Shopify-class) locked custom code and real payment integrations behind paid tiers she couldn't justify for a small operation. Rebuilt from the ground up as a headless storefront she can fully run herself: catalog, pricing, and content all editable without touching code, with a checkout flow that doesn't lock her into one costly payment provider.",
+  "status": "paused",
+  "features": [
+    "Headless CMS architecture (Payload 3 + MongoDB) driving the full catalog — products, categories, materials, and curated sets, all editable by a non-technical owner with zero code changes.",
+    "Dual checkout flow: manual bank transfer with auto-generated payment instructions and QR codes emailed to the customer, or card payment through a local payment gateway with a transparent processing fee — so she isn't forced into one payment method.",
+    "Server-side order integrity: totals are recalculated from source data in a beforeChange hook rather than trusted from the client, closing off price manipulation at checkout.",
+    "CMS-driven page builder (hero sliders, brand story, editorial/social galleries, FAQ, policy pages) so marketing content can evolve without developer involvement, backed by Playwright E2E and Vitest integration tests."
+  ],
+  "skills": [
+    "Next.js",
+    "React",
+    "Payload CMS",
+    "MongoDB",
+    "TypeScript",
+    "Tailwind CSS",
+    "Playwright",
+    "Vitest"
+  ],
+  "logs": [
+    {
+      "date": "Early 2025",
+      "event": "Brought in informally to help customize an existing store on a template platform, editing directly through the platform's own site builder. Hit a hard wall when free-tier limits blocked custom code and real payment integration."
+    },
+    {
+      "date": "2025 (university breaks)",
+      "event": "Started building a custom storefront from scratch in the only time available, roughly two-week windows between semesters. Got a bare-bones HTML/CSS/JS store working, then set it aside for a stretch with no steady time to push it further."
+    },
+    {
+      "date": "Sept – Oct 2025",
+      "event": "Decided with the client to abandon the original build and rebuild on a proper headless architecture instead."
+    },
+    {
+      "date": "January 2026",
+      "event": "Started the rebuild — Next.js frontend on a Payload CMS backend, planned around a free-tier hosting setup (same model used for FinanceOS and this portfolio)."
+    },
+    {
+      "date": "January – March 2026",
+      "event": "Built out the full catalog, dual checkout flow (bank transfer or gateway payment), CMS-driven page builder, and test coverage (Playwright + Vitest) to a working prototype."
+    },
+    {
+      "date": "Spring 2026",
+      "event": "Client feedback cycle — each round of requested changes meant restructuring already-built features. Paused with the project roughly 70-75% complete; picking back up once there's a longer uninterrupted stretch available."
+    }
+  ],
+  "cta": "Private Client Project"
+}

@@ -45,6 +45,7 @@ export const ui = {
     "project.status.ongoing": "Ongoing",
     "project.status.complete": "Complete",
     "project.status.QA": "In Review",
+    "project.status.paused": "Paused",
     "project.label.scope": "Project Scope",
     "project.label.objectives": "Key Objectives",
     // Skills
@@ -119,6 +120,7 @@ export const ui = {
     "project.status.ongoing": "En Desarrollo",
     "project.status.complete": "Completado",
     "project.status.QA": "En Revisión",
+    "project.status.paused": "Pausado",
     "project.label.scope": "Alcance del Proyecto",
     "project.label.objectives": "Objetivos Clave",
     // Skills

@@ -10,6 +10,7 @@ const statusKeys = {
   ongoing:  'project.status.ongoing',
   complete: 'project.status.complete',
   QA:       'project.status.QA',
+  paused:   'project.status.paused',
 } as const;
 ---
 
@@ -29,6 +30,8 @@ const statusKeys = {
             <span class={`text-[10px] font-bold uppercase tracking-[0.3em] ${
               proj.data.status === 'ongoing'
                 ? 'text-accent/80'
+                : proj.data.status === 'paused'
+                ? 'text-amber-500/80'
                 : 'text-emerald-500/80'
             }`}>
               {t(statusKeys[proj.data.status])}
