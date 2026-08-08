@@ -12,6 +12,8 @@ const statusKeys = {
   QA:       'project.status.QA',
   paused:   'project.status.paused',
 } as const;
+
+const VISIBLE_FEATURES = 4;
 ---
 
 <section class="mt-32 px-4 w-full">
@@ -61,13 +63,22 @@ const statusKeys = {
             {t("project.label.objectives")}
           </h4>
           <ul class="space-y-3">
-            {proj.data.features.map(feat => (
-              <li class="flex items-center gap-3 text-sm text-txt-secondary group-hover/section:text-txt-primary/90 transition-colors">
+            {proj.data.features.map((feat, i) => (
+              <li class={`flex items-center gap-3 text-sm text-txt-secondary group-hover/section:text-txt-primary/90 transition-colors ${i >= VISIBLE_FEATURES ? 'feat-extra hidden' : ''}`}>
                 <span class="h-px w-4 bg-bg-secondary group-hover/section:bg-accent transition-all"></span>
                 {feat}
               </li>
             ))}
           </ul>
+          {proj.data.features.length > VISIBLE_FEATURES && (
+            <button
+              class="feat-toggle mt-4 text-[10px] font-bold tracking-widest text-accent uppercase hover:underline"
+              data-more={`Show ${proj.data.features.length - VISIBLE_FEATURES} more [+]`}
+              data-less="Show less [-]"
+            >
+              {`Show ${proj.data.features.length - VISIBLE_FEATURES} more [+]`}
+            </button>
+          )}
         </div>
 
         <div class="pt-8 border-t border-accent/10 mt-auto flex items-center justify-between">
@@ -91,3 +102,28 @@ const statusKeys = {
     ))}
   </div>
 </section>
+
+<script>
+  function initFeatureToggles() {
+    document.querySelectorAll<HTMLButtonElement>('.feat-toggle').forEach(btn => {
+      // avoid double-binding on view-transition swaps
+      if (btn.dataset.bound === 'true') return;
+      btn.dataset.bound = 'true';
+
+      btn.addEventListener('click', () => {
+        const list = btn.previousElementSibling;
+        if (!list) return;
+
+        const extras = list.querySelectorAll('.feat-extra');
+        const isOpen = btn.dataset.state === 'open';
+
+        extras.forEach(li => li.classList.toggle('hidden', isOpen));
+        btn.dataset.state = isOpen ? 'closed' : 'open';
+        btn.textContent = isOpen ? btn.dataset.more ?? '' : btn.dataset.less ?? '';
+      });
+    });
+  }
+
+  initFeatureToggles();
+  document.addEventListener('astro:after-swap', initFeatureToggles);
+</script>
