@@ -1,13 +1,13 @@
 {
   "title": "POS System",
   "year": "2023",
-  "description": "A Django-based Point of Sale system covering inventory, sales, staff scheduling, clock-in/out tracking, and business reporting — started after watching a commercial POS system fail at two different bars I worked at: inventory drifted out of sync and sales periodically didn't register. Built from the ground up to understand where that kind of software actually breaks.",
+  "description": "A Django-based Point of Sale system covering inventory, sales, staff scheduling, clock-in/out tracking, and business reporting started after watching a commercial POS system fail at two different bars I worked at: inventory drifted out of sync and sales periodically didn't register. Built from the ground up to understand where that kind of software actually breaks.",
   "status": "complete",
   "features": [
     "Concurrency-safe checkout using select_for_update() and F() expressions to prevent overselling when multiple sales hit the same product at once.",
     "Role-based staff access (Admin / Manager / Staff) with clock-in/out tracking and manager-created shift scheduling.",
     "Sales reporting with revenue totals, top products, and gross margin breakdowns computed via Django ORM aggregation.",
-    "Service-layer architecture — business logic lives in SaleService/ShiftService, not views — split across focused Django apps (inventory, sales, staff, users, reports)."
+    "Service-layer architecture: business logic lives in SaleService/ShiftService, not views split across focused Django apps (inventory, sales, staff, users, reports)."
   ],
   "skills": [
     "Python",
@@ -21,19 +21,19 @@
   "logs": [
     {
       "date": "2023",
-      "event": "Started as a self-taught side project after experiencing a commercial POS system fail firsthand as a bartender — inventory counts drifted and sales periodically didn't register. Used a break from that job to learn Django (first web app, prior experience was Python scripting only) and get a bare-bones data model and login flow working."
+      "event": "Started as a self-taught side project after experiencing a commercial POS system fail firsthand as a bartender inventory counts drifted and sales periodically didn't register. Used a break from that job to learn Django (first web app, prior experience was Python scripting only) and get a bare-bones data model and login flow working."
     },
     {
       "date": "Mid 2024",
-      "event": "Picked the project back up after hitting the same class of failures with the same software while coaching at a different bar. Expanded the data model to support inventory tracking and multiple user accounts — still no UI at this stage."
+      "event": "Picked the project back up after hitting the same class of failures with the same software while coaching at a different bar. Expanded the data model to support inventory tracking and multiple user accounts still no UI at this stage."
     },
     {
       "date": "Late 2025 – Early 2026",
-      "event": "Returned with more focused effort: built the first UI and started treating it as more than a personal practice project."
+      "event": "Returned with more focused effort, built the first UI and started treating it as more than a personal practice project."
     },
     {
       "date": "23-04-2026",
-      "event": "Initial baseline audit — identified security gaps and architectural issues in the original single-app implementation"
+      "event": "Initial baseline audit identified security gaps and architectural issues in the original single-app implementation"
     },
     {
       "date": "26-05-2026",

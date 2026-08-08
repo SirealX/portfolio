@@ -12,8 +12,6 @@ const statusKeys = {
   QA:       'project.status.QA',
   paused:   'project.status.paused',
 } as const;
-
-const VISIBLE_FEATURES = 4;
 ---
 
 <section class="mt-32 px-4 w-full">
@@ -62,23 +60,24 @@ const VISIBLE_FEATURES = 4;
           <h4 class="text-[10px] uppercase tracking-[0.2em] text-txt-secondary font-bold mb-4">
             {t("project.label.objectives")}
           </h4>
-          <ul class="space-y-3">
-            {proj.data.features.map((feat, i) => (
-              <li class={`flex items-center gap-3 text-sm text-txt-secondary group-hover/section:text-txt-primary/90 transition-colors ${i >= VISIBLE_FEATURES ? 'feat-extra hidden' : ''}`}>
-                <span class="h-px w-4 bg-bg-secondary group-hover/section:bg-accent transition-all"></span>
-                {feat}
-              </li>
-            ))}
-          </ul>
-          {proj.data.features.length > VISIBLE_FEATURES && (
-            <button
-              class="feat-toggle mt-4 text-[10px] font-bold tracking-widest text-accent uppercase hover:underline"
-              data-more={`Show ${proj.data.features.length - VISIBLE_FEATURES} more [+]`}
-              data-less="Show less [-]"
-            >
-              {`Show ${proj.data.features.length - VISIBLE_FEATURES} more [+]`}
-            </button>
-          )}
+          <div class="feat-clamp max-h-45 overflow-hidden transition-[max-height] duration-300">
+            <ul class="space-y-3">
+              {proj.data.features.map(feat => (
+                <li class="flex items-start gap-3 text-sm text-txt-secondary group-hover/section:text-txt-primary/90 transition-colors">
+                  <span class="h-px w-4 mt-2.5 shrink-0 bg-bg-secondary group-hover/section:bg-accent transition-all"></span>
+                  {feat}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <button
+            class="feat-toggle hidden mt-4 text-[10px] font-bold tracking-widest text-accent uppercase hover:underline"
+            data-state="closed"
+            data-more="Show more [+]"
+            data-less="Show less [-]"
+          >
+            Show more [+]
+          </button>
         </div>
 
         <div class="pt-8 border-t border-accent/10 mt-auto flex items-center justify-between">
@@ -104,6 +103,19 @@ const VISIBLE_FEATURES = 4;
 </section>
 
 <script>
+  // Reveals the toggle only when a card's objectives actually overflow the
+  // clamp height, since item count alone doesn't predict wrapped line count.
+  function checkFeatureOverflow() {
+    document.querySelectorAll<HTMLElement>('.feat-clamp').forEach(clamp => {
+      const btn = clamp.nextElementSibling as HTMLButtonElement | null;
+      if (!btn?.classList.contains('feat-toggle')) return;
+      if (btn.dataset.state === 'open') return; // don't yank an expanded card shut
+
+      const overflowing = clamp.scrollHeight > clamp.clientHeight + 1;
+      btn.classList.toggle('hidden', !overflowing);
+    });
+  }
+
   function initFeatureToggles() {
     document.querySelectorAll<HTMLButtonElement>('.feat-toggle').forEach(btn => {
       // avoid double-binding on view-transition swaps
@@ -111,19 +123,30 @@ const VISIBLE_FEATURES = 4;
       btn.dataset.bound = 'true';
 
       btn.addEventListener('click', () => {
-        const list = btn.previousElementSibling;
-        if (!list) return;
+        const clamp = btn.previousElementSibling as HTMLElement | null;
+        if (!clamp) return;
 
-        const extras = list.querySelectorAll('.feat-extra');
         const isOpen = btn.dataset.state === 'open';
-
-        extras.forEach(li => li.classList.toggle('hidden', isOpen));
+        clamp.classList.toggle('max-h-45', isOpen);
+        clamp.classList.toggle('max-h-none', !isOpen);
         btn.dataset.state = isOpen ? 'closed' : 'open';
         btn.textContent = isOpen ? btn.dataset.more ?? '' : btn.dataset.less ?? '';
       });
     });
+
+    checkFeatureOverflow();
   }
 
   initFeatureToggles();
   document.addEventListener('astro:after-swap', initFeatureToggles);
+
+  const w = window as unknown as { __featResizeBound?: boolean };
+  if (!w.__featResizeBound) {
+    w.__featResizeBound = true;
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(checkFeatureOverflow, 150);
+    });
+  }
 </script>
