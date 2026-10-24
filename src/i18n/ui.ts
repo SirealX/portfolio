@@ -32,7 +32,7 @@ export const ui = {
     // Job 2
     "exp2.role": "VRI interpreter",
     "exp2.company": "Language Line Solution",
-    "exp2.date": "2023 — Present",
+    "exp2.date": "2023 — 2026",
     "exp2.location": "CO - Remote",
     "exp2.summary":
       "providing real-time interpretation between English and Spanish speakers via video conferencing, ensuring accurate and clear communication.",
@@ -107,7 +107,7 @@ export const ui = {
     // Job 2
     "exp2.role": "Interprete de Video Remoto",
     "exp2.company": "Language Line Solution",
-    "exp2.date": "2023 — Presente",
+    "exp2.date": "2023 — 2026",
     "exp2.location": "CO - Remoto",
     "exp2.summary":
       "Proveer interpretación en tiempo real entre angloparlantes e hispanohablantes vía videoconferencias, asegurando una comunicación clara y precisa.",
