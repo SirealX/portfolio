@@ -2,19 +2,23 @@
 
 Full-stack developer and Computer Science student (University of the People) in Ibagué, Colombia. I build projects that solve real problems I've run into, not tutorial clones. Bilingual English/Spanish.
 
-**Portfolio:** [cesarluna-dev.vercel.app](https://cesarluna-dev.vercel.app/en/) · **LinkedIn:** [cesar-augusto-luna-perez](https://www.linkedin.com/in/cesar-augusto-luna-perez)
+**Portfolio:** [cesarluna-dev.vercel.app](https://cesarluna-dev.vercel.app/en/) · **LinkedIn:** [cesar-augusto-luna-perez](https://www.linkedin.com/in/cesar-augusto-luna-perez-3892621b2/)
+
+---
+
+### What I'm building now
+
+**Small-Business Suite** _(design and early build)_ — A modular, multi-tenant platform for small businesses in Colombia: each business turns on only the tools it needs, starting with an online store for a real client, then finance and point of sale. Next.js + Django + PostgreSQL, with tenant isolation enforced by the database through row-level security. It reuses the logic of the projects below, rebuilt in one stack.
 
 ---
 
 ### What's here
 
-**[FinanceOS](https://github.com/SirealX/FinanceOS)** · [live demo](https://project-financeos.vercel.app) — A full-stack personal finance app. I was tracking my own money in Excel by hand, so I built a real replacement: bank statement import (CSV/XLSX), a debt tracker for credit cards, loans and BNPL with an Avalanche vs. Snowball payoff simulator, and a rule-based alert engine (14 rule types) that notifies through a Telegram bot. Live and actively maintained. React 19, FastAPI, PostgreSQL, Supabase.
+**[FinanceOS](https://github.com/SirealX/FinanceOS)** · [live demo](https://project-financeos.vercel.app) — A full-stack personal finance app built to replace my Excel tracking: bank statement import (CSV/XLSX), a debt tracker for credit cards, loans and BNPL with an Avalanche vs. Snowball payoff simulator, and a rule-based alert engine (14 rule types) that notifies through a Telegram bot. React 19, FastAPI, PostgreSQL, Supabase. Live; development paused — without automatic bank capture (closed to individuals in Colombia) it cost more effort than it saved.
 
-**[POS System](https://github.com/SirealX/pos_project)** — A Django point-of-sale system, built after watching a commercial POS fail at two bars I worked at (inventory drifting out of sync, sales not registering). Concurrency-safe checkout with `select_for_update()` and `F()` expressions, staff clock-in/out and scheduling, ORM-driven sales reporting, a service-layer architecture, and a pytest test suite. Python, Django, HTMX, SQLite/PostgreSQL.
+**[POS System](https://github.com/SirealX/pos_project)** — A Django point-of-sale system, built after watching a commercial POS fail at two bars I worked at (inventory drifting out of sync, sales not registering). Concurrency-safe checkout with `select_for_update()` and `F()` expressions, staff clock-in/out and scheduling, ORM-driven sales reporting, a service-layer architecture, and a pytest test suite. Python, Django, HTMX, PostgreSQL.
 
-**Jewelry E-Commerce Platform** _(client project, paused)_ — A headless storefront for a small jewelry business whose template platform locked custom code and payment integration behind paid tiers. Rebuilt on Payload CMS + Next.js so the owner can run the catalogue and checkout herself, with server-side price recalculation and Playwright/Vitest tests. About 70–75% complete.
-
-**Creative Services Website** _(in progress)_ — A Spanish-language site for a family DIY/custom creative business (personalized shoes, party decor, custom gifts) in Colombia. A CMS-driven quote calculator and portfolio, designed as an open-source template other small creative businesses can fork and configure. Next.js, Payload CMS, Supabase.
+**Jewelry E-Commerce Platform** _(client project, 2025–2026)_ — A headless storefront for a small jewelry business whose template platform locked custom code and payment integration behind paid tiers. Next.js + Payload CMS, server-side price recalculation, Playwright/Vitest tests. Now being rebuilt as the first tool of the suite.
 
 ---
 
@@ -22,15 +26,15 @@ Full-stack developer and Computer Science student (University of the People) in 
 
 **Languages:** Python, JavaScript, TypeScript, SQL
 **Frontend:** React, Next.js, Astro, Tailwind CSS
-**Backend:** FastAPI, Django, Node.js, Payload CMS
+**Backend:** Django, FastAPI, Node.js, Payload CMS
 **Data:** PostgreSQL, MongoDB, Supabase, SQLAlchemy
-**Testing & tools:** pytest, Playwright, Vitest, Git, GitHub Actions, Vercel, Render
+**Testing & tools:** pytest, Playwright, Vitest, Docker / Docker Compose, Git, GitHub Actions, Vercel, Render
 
 ---
 
-### What's next
+### On the side
 
-Exploring machine learning for network intrusion detection (training classifiers on real attack traffic) — a project that draws on cybersecurity rather than another web app.
+A home server on a refurbished laptop, running services with Docker Compose — the start of a self-hosted DevOps lab.
 
 ---
 

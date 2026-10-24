@@ -1,8 +1,8 @@
 {
   "title": "FinanceOS",
   "year": "2026",
-  "description": "Tracking my finances in Excel was completely manual, every transaction logged by hand. I built a full-stack app to replace it, with bank statement import, a rule-based alert engine, and a debt payoff simulator. Direct bank sync turned out not to be possible (banks don't allow direct access and the aggregator options didn't meet my security bar), so statement import is the automation path for now.",
-  "status": "ongoing",
+  "description": "Tracking my finances in Excel was completely manual, every transaction logged by hand. I built a full-stack app to replace it, with bank statement import, a rule-based alert engine, and a debt payoff simulator. Direct bank sync wasn't possible: open-banking access in Colombia is closed to individuals and the available aggregators scrape notifications insecurely. Without automatic capture the app cost more effort than it saved, so development is paused — a lesson that shapes my next project.",
+  "status": "paused",
   "features": [
     "Debt tracker for credit cards, loans and BNPL, with an Avalanche vs. Snowball payoff simulator",
     "CSV/XLSX bulk import from real bank statement downloads",
