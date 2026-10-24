@@ -1,12 +1,12 @@
 {
   "title": "FinanceOS",
   "year": "2026",
-  "description": "Tracking my finances in Excel was completely manual, every transaction logged by hand. I built a full-stack app to automate it, with real bank sync, smart alerts, and a debt payoff simulator.",
+  "description": "Tracking my finances in Excel was completely manual, every transaction logged by hand. I built a full-stack app to replace it, with bank statement import, a rule-based alert engine, and a debt payoff simulator. Direct bank sync turned out not to be possible (banks don't allow direct access and the aggregator options didn't meet my security bar), so statement import is the automation path for now.",
   "status": "ongoing",
   "features": [
-    "Debt payoff simulator with Waterfall and Snowball strategies",
+    "Debt tracker for credit cards, loans and BNPL, with an Avalanche vs. Snowball payoff simulator",
     "CSV/XLSX bulk import from real bank statement downloads",
-    "Rule-based alert engine that evaluates over-budget and spending spike conditions on every transaction write"
+    "Rule-based alert engine with 14 rule types (over-budget, spending spikes, bills and debts due, low balance), delivered through a Telegram bot"
   ],
   "skills": [
     "React 19",
@@ -16,7 +16,7 @@
     "Supabase",
     "Alembic",
     "Chart.js",
-    "Tailwind CSS",
+    "GitHub Actions",
     "Vercel",
     "Render"
   ],
@@ -41,7 +41,7 @@
     },
     {
       "date": "11-04-2026",
-      "event": "Telegram bot & PWA push feature completed"
+      "event": "Telegram bot notifications completed"
     },
     {
       "date": "12-04-2026",

@@ -1,50 +1,39 @@
-# Welcome to My Portfolio! 🚀
+# Hi, I'm Cesar 👋
 
-Hello! I'm a third-year Computer Science student with a deep love for technology and learning. This portfolio is a mix of professional and personal projects, where I aim to showcase my growth and passion for the tech world. **It's the first time I’m putting something out on GitHub, so it's a big milestone for me!**
+Full-stack developer and Computer Science student (University of the People) in Ibagué, Colombia. I build projects that solve real problems I've run into, not tutorial clones. Bilingual English/Spanish.
 
----
-
-### 👤 Who Am I?
-I’ve been fascinated by technology for as long as I can remember. My journey started with microcontrollers and working with PCBs, and gradually evolved into a love for coding, problem-solving, and exploring how both hardware and software come together.
-
-I’m currently learning a lot about coding, data analysis with Python (Pandas, NumPy), networking, and web development. I'm also dipping my toes into Astro, TypeScript, and JavaScript for the first time. I’m still getting comfortable with these new technologies, but I’m excited to grow.
-
-At my core, I'm a curious learner. My background in tech has always been more hands-on, and now, I'm focused on expanding my knowledge of software development, robotics, and data science. I see this portfolio as a place where I can document my learning, showcase my work, and continuously improve my skills.
+**Portfolio:** [cesarluna-dev.vercel.app](https://cesarluna-dev.vercel.app/en/) · **LinkedIn:** [cesar-augusto-luna-perez](https://www.linkedin.com/in/cesar-augusto-luna-perez)
 
 ---
 
-### 📂 What to Expect From My Portfolio
-This is where I’ll display everything from web development projects to data analysis, networking, and eventually some robotics. Right now, it’s a little bit of everything—because I’m still figuring out exactly where I want to focus my efforts.
+### What's here
 
-* **E-Commerce Project:** My primary focus at the moment is learning how to build a sustainable e-commerce platform. This is the project I’m most excited about and will be dedicating my time to during the holidays.
-* **Personal Projects:** I have a few side projects in mind, including a macro tracking app for gym enthusiasts, an APOS checking system, and a budgeting tool. These are in the works but aren’t featured yet.
-* **Web Development:** A mix of front-end and back-end development, mainly using Astro, JavaScript, TypeScript, and a bit of PHP.
-* **Learning Robotics:** I’ve recently started learning about Arduino and robotics, and will hopefully be showcasing some of my experiments here as well.
+**[FinanceOS](https://github.com/SirealX/FinanceOS)** · [live demo](https://project-financeos.vercel.app) — A full-stack personal finance app. I was tracking my own money in Excel by hand, so I built a real replacement: bank statement import (CSV/XLSX), a debt tracker for credit cards, loans and BNPL with an Avalanche vs. Snowball payoff simulator, and a rule-based alert engine (14 rule types) that notifies through a Telegram bot. Live and actively maintained. React 19, FastAPI, PostgreSQL, Supabase.
 
----
+**[POS System](https://github.com/SirealX/pos_project)** — A Django point-of-sale system, built after watching a commercial POS fail at two bars I worked at (inventory drifting out of sync, sales not registering). Concurrency-safe checkout with `select_for_update()` and `F()` expressions, staff clock-in/out and scheduling, ORM-driven sales reporting, a service-layer architecture, and a pytest test suite. Python, Django, HTMX, SQLite/PostgreSQL.
 
-### 🛠️ Technologies and Tools
-**Languages:** JavaScript, TypeScript, Python, PHP  
-**Libraries/Frameworks:** Astro, Pandas, NumPy  
-**Tools:** GitHub, VS Code, Arduino IDE, Figma, CAD, Blender
+**Jewelry E-Commerce Platform** _(client project, paused)_ — A headless storefront for a small jewelry business whose template platform locked custom code and payment integration behind paid tiers. Rebuilt on Payload CMS + Next.js so the owner can run the catalogue and checkout herself, with server-side price recalculation and Playwright/Vitest tests. About 70–75% complete.
+
+**Creative Services Website** _(in progress)_ — A Spanish-language site for a family DIY/custom creative business (personalized shoes, party decor, custom gifts) in Colombia. A CMS-driven quote calculator and portfolio, designed as an open-source template other small creative businesses can fork and configure. Next.js, Payload CMS, Supabase.
 
 ---
 
-### 🎯 Current Focus & What’s Next
-Right now, my focus is on building a fully-functional e-commerce website. This is my first major web development project, and I’m learning a lot along the way. My goal is to make the site scalable and responsive, while also understanding how to manage products, handle payments, and improve user experience.
+### Stack
 
-As a student, I’m still figuring out my exact direction, but I’m open to trying out new technologies, tools, and ideas as I go.
-
----
-
-### 📩 Contact and Collaboration
-I’m always open to collaboration and freelance work. While I’m still relatively new to the field, I’m eager to learn from others and contribute to projects where I can grow. If you’re a mentor or have advice to offer, I’d greatly appreciate it!
-
-Feel free to reach out via: **cesarluna.developer@gmail.com**
+**Languages:** Python, JavaScript, TypeScript, SQL
+**Frontend:** React, Next.js, Astro, Tailwind CSS
+**Backend:** FastAPI, Django, Node.js, Payload CMS
+**Data:** PostgreSQL, MongoDB, Supabase, SQLAlchemy
+**Testing & tools:** pytest, Playwright, Vitest, Git, GitHub Actions, Vercel, Render
 
 ---
 
-### 🙏 Acknowledgements
-A big thank you to the amazing YouTube channels, documentation sites, and online communities that have helped me along the way. I’ve mostly been self-taught and learned a lot through trial and error, and I’m grateful for the resources available.
+### What's next
 
-**I’m still early in my journey, and I know there’s so much more to learn. But I’m excited to be doing it, and I hope that as I continue to grow, this portfolio will reflect that journey. Thanks for checking it out!**
+Exploring machine learning for network intrusion detection (training classifiers on real attack traffic) — a project that draws on cybersecurity rather than another web app.
+
+---
+
+### Get in touch
+
+Open to junior developer roles, freelance work, and collaboration. Reach me at **cesarluna.developer@gmail.com**.
